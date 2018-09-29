@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.springboot.springbootmybatisplus.mapper.StudentMapper">
-
+    <update id="updateMy" parameterType="java.lang.Integer">
+       UPDATE student SET name = '测试' WHERE id = #{id}
+    </update>
 </mapper>
