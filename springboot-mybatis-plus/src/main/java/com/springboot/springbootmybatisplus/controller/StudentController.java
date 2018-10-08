@@ -2,8 +2,12 @@ package com.springboot.springbootmybatisplus.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.springboot.springbootmybatisplus.entity.Student;
 import com.springboot.springbootmybatisplus.service.StudentService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,11 +31,15 @@ import java.util.Map;
 public class StudentController {
 
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(StudentController.class);
     @Autowired
     private StudentService studentService;
 
     @GetMapping("selectAll")
     public List<Student> selectAll(){
+        LOGGER.debug("warn enter selectAll........");
+        LOGGER.info("info enter selectAll........");
+        LOGGER.warn("warn enter selectAll........");
         QueryWrapper<Student> queryWrapper = new QueryWrapper<>();
         queryWrapper.orderByDesc("age");
         return studentService.list(queryWrapper);
@@ -63,6 +71,28 @@ public class StudentController {
         return studentService.updateMy(id);
     }
 
+    @GetMapping("selectPageVo")
+    public IPage<Student> selectPageVo(@RequestParam("name") String name) {
+        Page<Student> studentPage = new Page<Student>();
+        return studentService.selectPageVo(studentPage, name);
+    }
 
+    @GetMapping("selectPage")
+    public IPage<Student> selectPage(@RequestParam("name") String name, @RequestParam("current") int current,@RequestParam("size") int size) {
+        /**
+         * <p>
+         * 分页构造函数
+         * </p>
+         *
+         * @param current 当前页
+         * @param size    每页显示条数
+         */
+        Page<Student> studentPage = new Page<Student>(current,size);
+//        studentPage.setSize(2);
+        QueryWrapper<Student> studentQueryWrapper = new QueryWrapper<Student>();
+        System.out.println("---测试热部署1111224445556666---");
+        studentQueryWrapper.likeRight("name",name);
+        return studentService.page(studentPage,studentQueryWrapper);
+    }
 
 }
