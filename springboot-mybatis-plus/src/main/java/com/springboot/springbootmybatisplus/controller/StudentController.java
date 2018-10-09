@@ -6,8 +6,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.springboot.springbootmybatisplus.entity.Student;
 import com.springboot.springbootmybatisplus.service.StudentService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,20 +25,21 @@ import java.util.Map;
  * @author lxj
  * @since 2018-09-29
  */
+@Slf4j
 @RestController
 @RequestMapping("/student")
 public class StudentController {
 
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(StudentController.class);
+//    private static final Logger LOGGER = LoggerFactory.getLogger(StudentController.class);
     @Autowired
     private StudentService studentService;
 
     @GetMapping("selectAll")
     public List<Student> selectAll(){
-        LOGGER.debug("warn enter selectAll........");
-        LOGGER.info("info enter selectAll........");
-        LOGGER.warn("warn enter selectAll........");
+        log.debug("warn enter selectAll123........");
+        log.info("info enter selectAll123........");
+        log.warn("warn enter selectAll123........");
         QueryWrapper<Student> queryWrapper = new QueryWrapper<>();
         queryWrapper.orderByDesc("age");
         return studentService.list(queryWrapper);

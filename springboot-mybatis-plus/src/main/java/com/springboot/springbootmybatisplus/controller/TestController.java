@@ -42,4 +42,10 @@ public class TestController {
         return testService.updateById(test);
     }
 
+    @GetMapping("/500")
+    public int test500(){
+        int a = 5/0;
+        return  a;
+    }
+
 }
