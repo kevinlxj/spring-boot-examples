@@ -34,10 +34,10 @@ public class Test implements Serializable {
     private String bb;
 
     @TableField(fill = FieldFill.INSERT)
-    private LocalDateTime gmt_create;
+    private LocalDateTime gmtCreate;
 
     @TableField(fill = FieldFill.INSERT_UPDATE)
-    private LocalDateTime gmt_modified;
+    private LocalDateTime gmtModified;
 
 
 }

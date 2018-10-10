@@ -2,10 +2,11 @@ package com.springboot.springbootmybatisplus.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
 
 /**
  * <p>
@@ -31,12 +32,12 @@ public class City implements Serializable {
     /**
      * 省份编号
      */
-    private Integer province_id;
+    private Integer provinceId;
 
     /**
      * 城市名称
      */
-    private String city_name;
+    private String cityName;
 
     /**
      * 描述

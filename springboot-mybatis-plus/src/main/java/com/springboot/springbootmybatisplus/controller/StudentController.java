@@ -4,8 +4,10 @@ package com.springboot.springbootmybatisplus.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.springboot.springbootmybatisplus.entity.Result;
 import com.springboot.springbootmybatisplus.entity.Student;
 import com.springboot.springbootmybatisplus.service.StudentService;
+import com.springboot.springbootmybatisplus.util.ResultUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,8 +32,6 @@ import java.util.Map;
 @RequestMapping("/student")
 public class StudentController {
 
-
-//    private static final Logger LOGGER = LoggerFactory.getLogger(StudentController.class);
     @Autowired
     private StudentService studentService;
 
@@ -45,13 +45,22 @@ public class StudentController {
         return studentService.list(queryWrapper);
     }
 
+    @GetMapping("selectAllResult")
+    public Result selectAllResult(){
+        QueryWrapper<Student> queryWrapper = new QueryWrapper<>();
+        queryWrapper.orderByDesc("age");
+        List<Student> studentList = studentService.list(queryWrapper);
+        return ResultUtil.success(studentList);
+    }
+
     @GetMapping("selectByCondition")
     public List<Student> selectByCondition(){
-        Map<String,Object> map = new HashMap<String,Object>();
+        Map<String,Object> map = new HashMap<String,Object>(16);
         map.put("name","王杨帅");
         map.put("age",25);
         QueryWrapper<Student> queryWrapper = new QueryWrapper<>();
         queryWrapper.allEq(map);
+        ///=查询方法
 //        queryWrapper.eq("name","王杨帅");
         return studentService.list(queryWrapper);
     }
@@ -88,6 +97,7 @@ public class StudentController {
          * @param size    每页显示条数
          */
         Page<Student> studentPage = new Page<Student>(current,size);
+        ///设置大小
 //        studentPage.setSize(2);
         QueryWrapper<Student> studentQueryWrapper = new QueryWrapper<Student>();
         System.out.println("---测试热部署1111224445556666---");

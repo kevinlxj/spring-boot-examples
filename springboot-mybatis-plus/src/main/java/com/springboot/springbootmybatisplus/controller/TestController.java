@@ -1,8 +1,10 @@
 package com.springboot.springbootmybatisplus.controller;
 
 
+import com.springboot.springbootmybatisplus.entity.Result;
 import com.springboot.springbootmybatisplus.entity.Test;
 import com.springboot.springbootmybatisplus.service.TestService;
+import com.springboot.springbootmybatisplus.util.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,7 +37,7 @@ public class TestController {
     @GetMapping("update")
     public Boolean update(){
         Test test = new Test();
-        test.setId(2);
+        test.setId(5);
         test.setAa("123");
         test.setBb("123");
         System.out.println(test);
@@ -46,6 +48,12 @@ public class TestController {
     public int test500(){
         int a = 5/0;
         return  a;
+    }
+
+    @GetMapping("/testResult")
+    public Result test() throws Exception{
+        String str = "测试结果统一返回";
+        return ResultUtil.success(str);
     }
 
 }
