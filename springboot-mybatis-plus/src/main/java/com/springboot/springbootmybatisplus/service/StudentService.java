@@ -17,8 +17,9 @@ import org.apache.ibatis.annotations.Param;
 public interface StudentService extends IService<Student> {
 
     /**
-     * @desc 12312312312
-     * @param id	
+     * 123123123
+     *        
+     * @param id 123213
      * @return int
      * @author 林星锦
      * @date 2018/10/10
@@ -27,7 +28,9 @@ public interface StudentService extends IService<Student> {
     int updateMy (int id);
 
     /**
-     * @desc 12213123
+     * 12312312
+     *
+     * @desc 1123213
      * @param page
      * @param name
      * @return com.baomidou.mybatisplus.core.metadata.IPage<com.springboot.springbootmybatisplus.entity.Student>
